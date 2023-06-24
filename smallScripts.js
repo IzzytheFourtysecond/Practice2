@@ -6,6 +6,8 @@ let testFunctions;
 // These functions find the index of the largest number in the array.
 const indexOfMax = [];
 
+let primeSieve;
+
 
 
 (function() {
@@ -43,6 +45,18 @@ indexOfMax.push(function(arr) {
 })
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+//This implementation uses filter...
+primeSieve = function(maxNumber) {
+    let nums = [];
+    for (let i = 2; i <= maxNumber; i++) {
+        nums.push(i);
+    }
+
+    for (let i = 0; i < nums.length; i++) {
+        nums = nums.filter((num, ind) => ind <= i || (num % nums[i]))
+    }
+    return nums;
+}
 
 })();
 
@@ -51,3 +65,5 @@ indexOfMax.push(function(arr) {
 // tests
 const testNums = [12, 13, -1, 3.59, 14.1, -2, 4]; //highestIndex = 4
 testFunctions(indexOfMax, testNums);
+
+console.log(primeSieve(100));
