@@ -152,27 +152,28 @@ function DFS() {
         // the search part
         followPath(currentPath);
         let currentCell = currentPath.pop();
-        // check space above
-        if (doesCellExist(currentCell.row - 1, currentCell.col) &&
-                mazeGrid[currentCell.row - 1][currentCell.col].isOpen)
-            pathList.push(currentPath.concat([currentCell, 
-                        {row: currentCell.row - 1, col: currentCell.col}]));
-        // check space below
-        if (doesCellExist(currentCell.row + 1, currentCell.col) &&
-                mazeGrid[currentCell.row + 1][currentCell.col].isOpen)
-            pathList.push(currentPath.concat([currentCell, 
-                        {row: currentCell.row + 1, col: currentCell.col}]));
-        // check space to left
-        if (doesCellExist(currentCell.row, currentCell.col - 1) &&
-                mazeGrid[currentCell.row][currentCell.col - 1].isOpen)
-            pathList.push(currentPath.concat([currentCell, 
-                        {row: currentCell.row, col: currentCell.col - 1}]));
         // check space to right
         if (doesCellExist(currentCell.row, currentCell.col + 1) &&
                 mazeGrid[currentCell.row][currentCell.col + 1].isOpen)
             pathList.push(currentPath.concat([currentCell, 
                         {row: currentCell.row, col: currentCell.col + 1}]));
+        // check space to left
+        if (doesCellExist(currentCell.row, currentCell.col - 1) &&
+                mazeGrid[currentCell.row][currentCell.col - 1].isOpen)
+            pathList.push(currentPath.concat([currentCell, 
+                        {row: currentCell.row, col: currentCell.col - 1}]));
+        // check space below
+        if (doesCellExist(currentCell.row + 1, currentCell.col) &&
+                mazeGrid[currentCell.row + 1][currentCell.col].isOpen)
+            pathList.push(currentPath.concat([currentCell, 
+                        {row: currentCell.row + 1, col: currentCell.col}]));
+        // check space above
+        if (doesCellExist(currentCell.row - 1, currentCell.col) &&
+                mazeGrid[currentCell.row - 1][currentCell.col].isOpen)
+            pathList.push(currentPath.concat([currentCell, 
+                        {row: currentCell.row - 1, col: currentCell.col}]));
         
+                        
         // clean up
         unfollowPath(currentPath);
         mazeGrid[currentCell.row][currentCell.col].isOpen = true;
